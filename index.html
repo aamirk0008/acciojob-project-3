@@ -1,0 +1,66 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        width: 40%;
+        margin: auto;
+        margin-top: 120px;
+        justify-content: center;
+        height: 60vh;
+        background-color: rgb(142, 255, 255);
+        padding: 5px 50px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px gray;
+      }
+      .heading {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        background-color: #007bff;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h1>Array Funtions Implementation</h1>
+      </div>
+    <button onclick="PrintDeveloperbyMap()">
+      Console log Students with Map
+    </button>
+    <button onclick="PrintDeveloperbyForEach()">
+      Console log Students with foreach
+    </button>
+    <button onclick="addData()">Console New Data with 4th Employee</button>
+    <button onclick="removeAdmin()">Remove Admin</button>
+    <button onclick="concatenateArray()">concatenateArray</button>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
