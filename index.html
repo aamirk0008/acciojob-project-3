@@ -6,65 +6,347 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Array Functions</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        margin: 0;
-      }
-      .container {
-        display: flex;
-        flex-direction: column;
-        /* align-items: center; */
-        width: 40%;
-        margin: auto;
-        margin-top: 120px;
-        justify-content: center;
-        height: 60vh;
-        background-color: rgb(142, 255, 255);
-        padding: 5px 50px;
-        border-radius: 15px;
-        box-shadow: 0 0 15px gray;
-      }
-      .heading {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      button {
-        margin: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border: none;
-        border-radius: 10px;
-        color: white;
-        background-color: #007bff;
-        transition: all 0.3s ease;
-      }
-      button:hover {
-        background-color: #0056b3;
-      }
-      button:active {
-        transform: scale(0.95);
-      }
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.6); }
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .functions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .function-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .function-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .function-card:hover::before {
+            left: 100%;
+        }
+
+        .function-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .function-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .function-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: white;
+        }
+
+        .map-icon { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+        .foreach-icon { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .add-icon { background: linear-gradient(135deg, #45b7d1, #96c93d); }
+        .remove-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .concat-icon { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+
+        .function-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .execute-btn {
+            width: 100%;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .execute-btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+            transform: translate(-50%, -50%);
+        }
+
+        .execute-btn:hover:before {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+        }
+
+        .map-btn { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+        .foreach-btn { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .add-btn { background: linear-gradient(135deg, #45b7d1, #96c93d); }
+        .remove-btn { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .concat-btn { background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #333; }
+
+        .execute-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .console-section {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .console-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #00ff00;
+        }
+
+        .console-header h3 {
+            margin-left: 15px;
+            font-size: 1.5em;
+        }
+
+        .console-dots {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .console-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f57; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #28ca42; }
+
+        .console-output {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            min-height: 150px;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            max-height: 400px;
+            position: relative;
+        }
+
+        .console-output:empty:before {
+            content: "Console output will appear here...";
+            color: #666;
+            font-style: italic;
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .run-all-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .run-all-btn {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef);
+            color: #333;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .run-all-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .functions-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+        }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="heading">
-        <h1>Array Funtions Implementation</h1>
-      </div>
-    <button onclick="PrintDeveloperbyMap()">
-      Console log Students with Map
-    </button>
-    <button onclick="PrintDeveloperbyForEach()">
-      Console log Students with foreach
-    </button>
-    <button onclick="addData()">Console New Data with 4th Employee</button>
-    <button onclick="removeAdmin()">Remove Admin</button>
-    <button onclick="concatenateArray()">Concatenate Array</button>
+        <div class="header">
+            <h1>🚀 Array Functions Lab</h1>
+            <p>Interactive JavaScript Array Operations</p>
+        </div>
+
+        <div class="functions-grid">
+            <div class="function-card">
+                <div class="function-title">
+                    <div class="function-icon map-icon">🗺️</div>
+                    Print Developers (Map)
+                </div>
+                <div class="function-description">
+                    Uses the .map() function to iterate through employees and display all developers in the console.
+                </div>
+                <button class="execute-btn map-btn" onclick="PrintDeveloperbyMap()">
+                    Execute Map Function
+                </button>
+            </div>
+
+            <div class="function-card">
+                <div class="function-title">
+                    <div class="function-icon foreach-icon">🔄</div>
+                    Print Developers (ForEach)
+                </div>
+                <div class="function-description">
+                    Uses the .forEach() function to iterate through employees and display all developers in the console.
+                </div>
+                <button class="execute-btn foreach-btn" onclick="PrintDeveloperbyForEach()">
+                    Execute ForEach Function
+                </button>
+            </div>
+
+            <div class="function-card">
+                <div class="function-title">
+                    <div class="function-icon add-icon">➕</div>
+                    Add New Employee
+                </div>
+                <div class="function-description">
+                    Adds a new employee (Susan, intern) to the existing array and displays the updated array.
+                </div>
+                <button class="execute-btn add-btn" onclick="addData()">
+                    Add Employee Data
+                </button>
+            </div>
+
+            <div class="function-card">
+                <div class="function-title">
+                    <div class="function-icon remove-icon">❌</div>
+                    Remove Admin Users
+                </div>
+                <div class="function-description">
+                    Filters out all employees with admin profession and displays the cleaned array.
+                </div>
+                <button class="execute-btn remove-btn" onclick="removeAdmin()">
+                    Remove Admin Users
+                </button>
+            </div>
+
+            <div class="function-card">
+                <div class="function-title">
+                    <div class="function-icon concat-icon">🔗</div>
+                    Concatenate Arrays
+                </div>
+                <div class="function-description">
+                    Creates a new array with 3 employees and concatenates it with the existing array.
+                </div>
+                <button class="execute-btn concat-btn" onclick="concatenateArray()">
+                    Concatenate Arrays
+                </button>
+            </div>
+        </div>
     </div>
+
     <script src="./script.js"></script>
   </body>
 </html>
