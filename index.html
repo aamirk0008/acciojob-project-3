@@ -40,9 +40,13 @@
         border-radius: 10px;
         color: white;
         background-color: #007bff;
+        transition: all 0.3s ease;
       }
       button:hover {
         background-color: #0056b3;
+      }
+      button:active {
+        transform: scale(0.95);
       }
     </style>
   </head>
@@ -59,7 +63,7 @@
     </button>
     <button onclick="addData()">Console New Data with 4th Employee</button>
     <button onclick="removeAdmin()">Remove Admin</button>
-    <button onclick="concatenateArray()">concatenateArray</button>
+    <button onclick="concatenateArray()">Concatenate Array</button>
     </div>
     <script src="./script.js"></script>
   </body>
