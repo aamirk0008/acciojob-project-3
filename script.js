@@ -1,9 +1,9 @@
 /** @format */
 
 let arr = [
-  { id: 1, name: "john", age: "18", profession: "developer" },
-  { id: 2, name: "jack", age: "20", profession: "developer" },
-  { id: 3, name: "karen", age: "19", profession: "admin" },
+  { id: 1, name: "Sheikh Aamir", age: "23", profession: "developer" },
+  { id: 2, name: "John Doe", age: "20", profession: "developer" },
+  { id: 3, name: "Vasu Tiwari", age: "22", profession: "admin" },
 ];
 
 function PrintDeveloperbyMap() {
@@ -31,9 +31,9 @@ function PrintDeveloperbyForEach() {
 function addData() {
   //Write your code here, just console.log
   console.log("=== addData ===");
-        const newEmployee = { id: 4, name: "susan", age: "20", profession: "intern" };
-        arr.push(newEmployee);
-        console.log(arr);
+  const newEmployee = { id: 4, name: "Aamir", age: "20", profession: "intern" };
+  arr.push(newEmployee);
+  console.log(arr);
   alert("Open Console to see the output.");
 }
 
@@ -48,12 +48,12 @@ function removeAdmin() {
 function concatenateArray() {
   //Write your code here, just console.log
   console.log("=== concatenateArray ===");
-        const newArray = [
-          { id: 5, name: "alice", age: "22", profession: "designer" },
-          { id: 6, name: "bob", age: "25", profession: "manager" },
-          { id: 7, name: "charlie", age: "23", profession: "tester" }
-        ];
-        const concatenatedArray = arr.concat(newArray);
-        console.log(concatenatedArray);
-        alert("Open Console to see the output.");
+  const newArray = [
+    { id: 5, name: "Harshit", age: "22", profession: "Quality Analyst" },
+    { id: 6, name: "Shruti", age: "25", profession: "Prompt Engineer" },
+    { id: 7, name: "Rohan", age: "23", profession: "Software Developer" }
+  ];
+  const concatenatedArray = arr.concat(newArray);
+  console.log(concatenatedArray);
+  alert("Open Console to see the output.");
 }
